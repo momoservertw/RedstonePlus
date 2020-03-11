@@ -1,0 +1,146 @@
+# --{ =-=-=-=-=-=-=-=-=-= RedstonePlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
+Config-Version: 5
+Log-Coloration: true
+Debugging: false
+Check-Updates: true
+
+# The menu item for some events like showing creative blocks or destroying it.
+# Item types: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+# If you don't have a menu in your server, you can set Item-Name to '' to use a vanilla item.
+Menu:
+  Item-Type: 'PLAYER_HEAD'
+  Item-Name: '&e&lMy &6&lMenu'
+
+# Buy or give creative blocks.
+# Price-Type: "money" or "points". "points" only support PlayerPoints.
+# PlayerPoints: https://dev.bukkit.org/projects/playerpoints
+# Amount: Can set over the max stack size. By default, it will give the max stack size of item like "barrier x64".
+# Buy command permission: redstoneplus.command.buy
+# Buy item permission: redstoneplus.buy.MATERIAL or redstoneplus.buy.*
+# Give command permission: redstoneplus.command.give
+# Guve item permission: redstoneplus.give.MATERIAL or redstoneplus.give.*
+Buy:
+  List:
+    BARRIER:
+      Price-Type: points
+      Price: 25
+      Amount: 64
+    STRUCTURE_VOID:
+      Price-Type: points
+      Price: 25
+    BEDROCK:
+      Price-Type: points
+      Price: 25
+    DIRT:
+      Price-Type: money
+      Price: 1000
+      Amount: 640
+
+# Display near creative blocks.
+# Distance: The display creative range near player. Setting too high may cause lags.
+# Cooldown(tick): Set "0" to disable cooldown feature.
+# Creative-Mode: Display the particles is player is op.
+# Particle type: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+# Permission: redstoneplus.see.MATERIAL or redstoneplus.see.*
+See:
+  Enable: false
+  Distance: 10
+  Cooldown: 60
+  Cooldown-Message: false
+  List:
+    BARRIER:
+      Creative-Mode: false
+      Particle: BARRIER
+      Amount: 1
+      Times: 1
+      Interval-Tick: 10
+    STRUCTURE_VOID:
+      Particle: CRIT_MAGIC
+      Amount: 2
+      Times: 10
+      Interval-Tick: 10
+
+# These creative blocks will need permission to place.
+# It will not limit place location if you don' add the location setting.
+# Permission: redstoneplus.place.MATERIAL or redstoneplus.place.*
+Place:
+  Enable: false
+  List:
+    BARRIER: []
+    STRUCTURE_VOID: []
+    BEDROCK:
+      Location:
+        world:
+          Y: ">= 5"
+        world_nether:
+          Y: "5 ~ 123"
+
+# Control blocks destroy conditions. The creative blocks can be broken by the menu.
+# Help-Message: Send a help message to player if they try to break the block which disable vanilla break.
+# cooldown(tick): Set "0" to disable the Menu-break cooldown.
+# Default: Menu-Break: true, Menu-Drop: true, Vanilla-Break: false,
+#          Vanilla-Drop: false, Explode-Break: false, Explode-Drop: false
+# It will not limit destroy location if you don' add the location setting.
+# Permission: redstoneplus.destroy.MATERIAL or redstoneplus.destroy.*
+Destroy:
+  Enable: false
+  Menu-Break:
+    Help-Message: true
+    Cooldown: 10
+    Cooldown-Message: false
+  List:
+    BARRIER:
+      Menu-Break: true
+      Menu-Drop: true
+      Vanilla-Break: false
+      Vanilla-Drop: false
+      Explode-Break: false
+      Explode-Drop: false
+    STRUCTURE_VOID: []
+    BEDROCK:
+      Location:
+        world:
+          Y: ">= 5"
+        world_nether:
+          Y: "5 ~ 123"
+
+Message:
+  prefix: '&7[&dRedstonePlus&7]&r '
+  noPermission: '&cYou do not have permission to use that command!'
+  unknownCommand: '&cUnknown command, See &e/redstoneplus help &cfor a list of commands.'
+  configReload: '&fConfiguration(s) Reloaded!'
+  cooldown: '&fPlease try it again later.'
+  targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
+  RedstonePlus:
+    Commands:
+      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lRedstonePlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+      help: "&a/redstoneplus help &8- &7This help menu."
+      reload: "&a/redstoneplus reload &8- &7Reloads config file."
+      buy: "&a/redstoneplus buy <item> &8- &7Buy creative items."
+      buyOther: "&a/redstoneplus buy <item> [player] &8- &7Execute buy creative items command to a player."
+      give: "&a/redstoneplus give <item> [amount] &8- &7Give creative items."
+      giveOther: "&a/redstoneplus give <item> [amount] [player] &8- &7Give creative items to a player."
+    noPermDestroy: '&cYou dont have &6build &cpermission<s> here.'
+    noPermPlace: '&cYou dont have permission to place this block.'
+    noPermBreak: '&cYou dont have permission to break this block.'
+    placeLocFail: '&7You cannot place the %item% in this position.'
+    breakHelp: '&7Holding menu and "&eleft-click + shift&7" to break this block.'
+    breakLocFail: '&7You cannot break the %item% in this position.'
+    noShopItem: '&cYou can not buy this block.'
+    inventoryFull: '&cYou dont have enough inventory space.'
+    targetInventoryFull: '&c%targetplayer% dont have enough inventory space.'
+    buyDisable: '&cThis feature is disabled.'
+    buyNoPerm: '&cYou do not have permission to buy %item%.'
+    buySuccess: '&aSuccess buy &e%item% x%amount% &afor %price% %pricetype% &8- &a%pricetype%: %balance%'
+    buyTargetSuccess: '&aSuccess buy &e%item% x%amount% &afor %price% %pricetype% for %targetplayer% &8- &a%pricetype%: %balance%'
+    buyNotEnoughMoney: '&cYou need &e%price% %pricetype%&c to buy %item% x%amount% &8- &c%pricetype%: %balance%.'
+    buyTargetNotEnoughMoney: '&c%targetplayer% need &e%price% %pricetype%&c to buy %item% x%amount% &8- &c%pricetype%: %balance%'
+    giveSuccess: '&aSuccess give &e%item% x%amount%&a.'
+    giveTargetSuccess: '&aSuccess give &e%item% x%amount% &afor %targetplayer%.'
+    Items:
+      BARRIER: 'barrier'
+      STRUCTURE_VOID: 'structure_void'
+      BEDROCK: 'bedrock'
+    PriceTypes:
+      money: 'money'
+      points: 'points'

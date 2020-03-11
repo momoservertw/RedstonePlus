@@ -1,0 +1,197 @@
+name: RedstonePlus
+main: tw.momocraft.redstoneplus.RedstonePlus
+author: Momocraft
+api-version: 1.13
+version: 1.0.0
+description: Control blocks place and destroy conditions, and display nearly invisible blocks like barriers.
+softdepend: [Vault, Residence, PlayerPoints, PlaceHolderAPI]
+
+commands:
+  redstoneplus:
+    description: Displays main command menu.
+    permission: redstoneplus.use
+    usage: |
+      /redstoneplus
+  redstoneplus reload:
+    description: Reloads all configuration files and caches any new data.
+    permission: redstoneplus.command.version
+    usage: |
+      /redstoneplus reload
+  redstoneplus version:
+    description: Check the plugin version.
+    permission: redstoneplus.command.version
+    usage: |
+      /redstoneplus version
+  redstoneplus buy:
+    description: To buy creative blocks.
+    permission: redstoneplus.command.buy
+    usage: |
+      /redstoneplus buy
+  redstoneplus buy barrier:
+    description: To buy barriers.
+    permission: redstoneplus.command.buy
+    usage: |
+      /redstoneplus buy barrier
+  redstoneplus buy structure_void:
+    description: To buy structure_voids.
+    permission: redstoneplus.command.buy
+    usage: |
+      /redstoneplus buy structure_void
+  redstoneplus buy bedrock:
+    description: To buy bedrocks.
+    permission: redstoneplus.command.buy
+    usage: |
+      /redstoneplus buy bedrock
+  redstoneplus give:
+    description: To give creative blocks.
+    permission: redstoneplus.command.give
+    usage: |
+      /redstoneplus give
+  redstoneplus give barrier:
+    description: To give barriers.
+    permission: redstoneplus.command.give
+    usage: |
+      /redstoneplus give barrier
+  redstoneplus give structure_void:
+    description: To give structure_voids.
+    permission: redstoneplus.command.give
+    usage: |
+      /redstoneplus give structure_void
+  redstoneplus give bedrock:
+    description: To give bedrocks.
+    permission: redstoneplus.command.give
+    usage: |
+      /redstoneplus give bedrock
+
+permissions:
+  redstoneplus.*:
+    description: Allows use of all commands and feature.
+    default: op
+    children:
+      redstoneplus.use: true
+      redstoneplus.command.*: true
+      redstoneplus.see.*: true
+      redstoneplus.place.*: true
+      redstoneplus.destroy.*: true
+      redstoneplus.buy.*: true
+      redstoneplus.give.*: true
+      redstoneplus.bypass.*: true
+  redstoneplus.use:
+    description: Allows use of basic commands.
+    default: true
+  redstoneplus.command.*:
+    description: Allows use all commands.
+    default: op
+    children:
+      redstoneplus.command.reload: true
+      redstoneplus.command.version: true
+      redstoneplus.command.buy: true
+      redstoneplus.command.buy.other: true
+      redstoneplus.command.give: true
+      redstoneplus.command.give.other: true
+  redstoneplus.command.reload:
+    description: Allows use of command /redstoneplus reload.
+    default: op
+  redstoneplus.command.version:
+    description: Allows use of command /redstoneplus version.
+    default: op
+  redstoneplus.command.buy:
+    description: Allows to use command /redstoneplus buy.
+    default: op
+  redstoneplus.command.buy.other:
+    description: Allows to use command /redstoneplus buy for other player.
+    default: op
+  redstoneplus.command.give:
+    description: Allows to use command /redstoneplus give.
+    default: op
+  redstoneplus.command.give.other:
+    description: Allows to use command /redstoneplus give for other player.
+    default: op
+  redstoneplus.see.*:
+    description: Allows to see near blocks.
+    default: op
+    children:
+      redstoneplus.see.barrier: true
+      redstoneplus.see.structure_void: true
+  redstoneplus.see.barrier:
+    description: Allows to see barriers.
+    default: op
+  redstoneplus.see.structure_void:
+    description: Allows to see structure_void.
+    default: op
+  redstoneplus.place.*:
+    description: Allows place all blocks in config.
+    default: op
+    children:
+      redstoneplus.place.barrier: true
+      redstoneplus.place.structure_void: true
+      redstoneplus.place.bedrock: true
+  redstoneplus.place.barrier:
+    description: Allows to place barriers.
+    default: op
+  redstoneplus.place.structure_void:
+    description: Allows to place structure_void.
+    default: op
+  redstoneplus.place.bedrock:
+    description: Allows to place bedrocks.
+    default: op
+  redstoneplus.destroy.*:
+    description: Allows destroy all blocks in config by server menu item.
+    default: op
+    children:
+      redstoneplus.destroy.barrier: true
+      redstoneplus.destroy.structure_void: true
+      redstoneplus.destroy.bedrock: true
+  redstoneplus.destroy.barrier:
+    description: Allows to destroy barriers.
+    default: op
+  redstoneplus.destroy.structure_void:
+    description: Allows to destroy structure_void.
+    default: op
+  redstoneplus.destroy.bedrock:
+    description: Allows to destroy bedrocks.
+    default: op
+  redstoneplus.buy.*:
+    description: Allows to buy all blocks.
+    default: op
+    children:
+      redstoneplus.buy.barrier: true
+      redstoneplus.buy.structure_void: true
+      redstoneplus.buy.bedrock: true
+  redstoneplus.buy.barrier:
+    description: Allows to buy barriers.
+    default: op
+  redstoneplus.buy.structure_void:
+    description: Allows to buy structure_voids.
+    default: op
+  redstoneplus.buy.bedrock:
+    description: Allows to buy bedrocks.
+    default: op
+  redstoneplus.give.*:
+    description: Allows to give all blocks.
+    default: op
+    children:
+      redstoneplus.give.barrier: true
+      redstoneplus.give.structure_void: true
+      redstoneplus.give.bedrock: true
+  redstoneplus.give.barrier:
+    description: Allows to give barriers.
+    default: op
+  redstoneplus.give.structure_void:
+    description: Allows to give structure_voids.
+    default: op
+  redstoneplus.give.bedrock:
+    description: Allows to give bedrocks.
+    default: op
+  redstoneplus.bypass.*:
+    description: Bypass all event's permission and limits.
+    default: op
+    children:
+      redstoneplus.bypass.destroy: true
+      redstoneplus.bypass.place: true
+  redstoneplus.bypass.destroy:
+    description: Bypass the destroy permission and limits.
+    default: op
+  redstoneplus.bypass.place:
+    description: Bypass the place permission and limits.
+    default: op
